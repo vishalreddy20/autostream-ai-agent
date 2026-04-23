@@ -1,6 +1,6 @@
 # AutoStream AI Agent
 
-> A production-quality conversational AI agent built with LangGraph + Claude 3 Haiku.
+> A production-quality conversational AI agent built with LangGraph + Gemini 1.5 Flash.
 > Classifies user intent, answers product questions via RAG, and captures qualified sales leads.
 
 ---
@@ -9,8 +9,8 @@
 
 1. **Clone the repository**
    ```bash
-   git clone <your-repo-url>
-   cd autostream-agent
+   git clone https://github.com/vishalreddy20/autostream-ai-agent.git
+   cd autostream-ai-agent
    ```
 
 2. **Create a virtual environment**
@@ -27,15 +27,15 @@
    pip install -r requirements.txt
    ```
 
-5. **Get your Anthropic API key** (free — no credit card required)
-   - Go to [https://console.anthropic.com](https://console.anthropic.com)
-   - Sign up with Google or email → receive $5 free credits automatically
-   - Navigate to **API Keys** → **Create Key** → name it `autostream-agent`
-   - Copy the key immediately (shown only once)
+5. **Get your Google Gemini API key** (free — no billing required)
+   - Go to [https://aistudio.google.com/apikey](https://aistudio.google.com/apikey)
+   - Sign in with your Google account
+   - Click **Create API key**
+   - Copy the key immediately
 
 6. **Create your `.env` file**
    ```bash
-   ANTHROPIC_API_KEY=sk-ant-xxxxxxxxxxxxxxxxxxxx
+   GOOGLE_API_KEY=AIzaSyxxxxxxxxxxxxxxxxxxxx
    ```
    > ⚠️ Never commit `.env` to GitHub. It is already excluded by `.gitignore`.
 
@@ -74,7 +74,7 @@ The knowledge base is small (2 plans, 3 policies, 3 FAQs) and fully deterministi
 
 | Node | Purpose |
 |------|---------|
-| `classify_intent` | Uses Claude 3 Haiku at `temperature=0` to output exactly one of: `greeting`, `inquiry`, `high_intent` |
+| `classify_intent` | Uses Gemini 1.5 Flash at `temperature=0` to output exactly one of: `greeting`, `inquiry`, `high_intent` |
 | `handle_greeting` | Generates a warm, brand-consistent 2-sentence reply |
 | `handle_inquiry` | Retrieves grounding context from `knowledge.json` and answers strictly from that context |
 | `handle_high_intent` | Sequential field collection: name → email → platform, with per-field validation |
@@ -96,13 +96,12 @@ START
 
 **Special bypass**: If `awaiting_field` is set (mid-collection), `route_by_intent` skips classification entirely and sends the message directly to `handle_high_intent`. This prevents the classifier from misinterpreting a raw email address as a `greeting`.
 
-### LLM Choice: Claude 3 Haiku
+### LLM Choice: Gemini 1.5 Flash
 
-1. **Speed**: Fastest Claude model — critical for multi-turn conversational latency
-2. **Instruction adherence**: Outputs exactly one word for intent classification — no cleanup needed
-3. **JSON discipline**: Strong structured output without extra parsing libraries
-4. **Cost**: ~$0.25/million input tokens — entire demo costs under $0.05
-5. **Free tier**: Anthropic gives new accounts $5 credits — sufficient for 50+ demo conversations
+1. **Free Tier Generosity**: Gemini 1.5 Flash provides 15 requests per minute and 1,500 requests per day entirely for free without requiring a credit card, making it the most robust choice for development and demonstrations.
+2. **Speed**: Flash is Google's lightweight, extremely fast model — critical for multi-turn conversational latency.
+3. **Instruction adherence**: Accurately outputs single-word classifications for intent detection.
+4. **JSON discipline**: Strong structured output capabilities without needing extra parsing libraries.
 
 ---
 
