@@ -1,0 +1,50 @@
+{
+  "product": "AutoStream",
+  "tagline": "Automated video editing tools for content creators",
+  "plans": [
+    {
+      "name": "Basic",
+      "price_monthly": 29,
+      "videos_per_month": 10,
+      "resolution": "720p",
+      "ai_captions": false,
+      "support": "Standard (business hours)"
+    },
+    {
+      "name": "Pro",
+      "price_monthly": 79,
+      "videos_per_month": "Unlimited",
+      "resolution": "4K",
+      "ai_captions": true,
+      "support": "24/7 priority support"
+    }
+  ],
+  "policies": [
+    {
+      "policy": "refund",
+      "detail": "No refunds are issued after 7 days from the purchase date."
+    },
+    {
+      "policy": "support_availability",
+      "detail": "24/7 support is available exclusively on the Pro plan."
+    },
+    {
+      "policy": "trial",
+      "detail": "A 14-day free trial is available on both plans with no credit card required."
+    }
+  ],
+  "faqs": [
+    {
+      "q": "Can I upgrade from Basic to Pro?",
+      "a": "Yes. You can upgrade at any time and you will be charged the prorated difference."
+    },
+    {
+      "q": "What platforms does AutoStream support?",
+      "a": "AutoStream works with all major platforms: YouTube, Instagram, TikTok, and X (Twitter)."
+    },
+    {
+      "q": "Is there a free plan?",
+      "a": "There is no permanent free plan, but we offer a 14-day free trial."
+    }
+  ]
+}
